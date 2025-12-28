@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Journey Analysis - Marketing Analytics Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .intro {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .intro h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .notebooks {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .notebook-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: start;
+            gap: 20px;
+        }
+        
+        .notebook-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .notebook-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .notebook-content {
+            flex: 1;
+        }
+        
+        .notebook-content h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+        
+        .notebook-content p {
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+        
+        .notebook-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .notebook-content ul li {
+            padding: 5px 0;
+            color: #495057;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .notebook-content ul li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .notebook-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .notebook-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .key-findings {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .key-findings h2 {
+            color: #856404;
+            margin-bottom: 20px;
+        }
+        
+        .key-findings ul {
+            list-style: none;
+        }
+        
+        .key-findings ul li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #856404;
+            font-weight: 500;
+        }
+        
+        .key-findings ul li:before {
+            content: "★";
+            position: absolute;
+            left: 0;
+            color: #ffc107;
+            font-size: 1.5em;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .tech-badge {
+            background: #34495e;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Complete Journey Analysis</h1>
+            <p>Data-Driven Marketing Strategy for Retail Excellence</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>🎯 Project Overview</h2>
+                <p>This comprehensive analysis tackles a critical retail challenge: <strong>how to allocate marketing resources efficiently when a small core of Premium Loyalists generates 76% of revenue, while the broader customer base remains underpenetrated.</strong></p>
+                <p>Using the Dunnhumby Complete Journey dataset (2,500 households, ~2.6M transactions over 711 days), we built an integrated strategy across five analytical modules that answer interconnected business questions about segmentation, bundling, pricing, targeting, and retention.</p>
+            </div>
+            
+            <h2 style="margin-bottom: 30px; color: #2c3e50;">📚 Navigation Guide</h2>
+            
+            <div class="notebooks">
+                <div class="notebook-card">
+                    <div class="notebook-number">0</div>
+                    <div class="notebook-content">
+                        <h3>Project Introduction</h3>
+                        <p>Executive overview, business context, data foundation, and methodology framework</p>
+                        <ul>
+                            <li>Business motivation and pain points</li>
+                            <li>Dunnhumby dataset structure</li>
+                            <li>Five analytical workstreams overview</li>
+                            <li>Cross-module integration strategy</li>
+                        </ul>
+                        <a href="0_project_overview.html" class="notebook-link">View Introduction →</a>
+                    </div>
+                </div>
+                
+                <div class="notebook-card">
+                    <div class="notebook-number">1</div>
+                    <div class="notebook-content">
+                        <h3>Customer Value Map</h3>
+                        <p>RFM segmentation and K-means clustering to identify high-value households</p>
+                        <ul>
+                            <li>Four actionable clusters identified</li>
+                            <li>Premium Loyalists: 392 households, 47% revenue</li>
+                            <li>Growth Regulars, Reactivation Pool, Lost/Churned</li>
+                            <li>Segment-specific recommendations</li>
+                        </ul>
+                        <a href="1_customer_value_map.html" class="notebook-link">View Analysis →</a>
+                    </div>
+                </div>
+                
+                <div class="notebook-card">
+                    <div class="notebook-number">2</div>
+                    <div class="notebook-content">
+                        <h3>Bundle Analysis</h3>
+                        <p>Market basket analysis to uncover high-support product combinations</p>
+                        <ul>
+                            <li>Apriori algorithm on 275K baskets</li>
+                            <li>Breakfast Kit, Deli Lunch, Pasta Night bundles</li>
+                            <li>Association rules with lift 3-4×</li>
+                            <li>Cross-aisle display recommendations</li>
+                        </ul>
+                        <a href="2_bundle_analysis.html" class="notebook-link">View Analysis →</a>
+                    </div>
+                </div>
+                
+                <div class="notebook-card">
+                    <div class="notebook-number">3</div>
+                    <div class="notebook-content">
+                        <h3>Price Elasticity & Promotions</h3>
+                        <p>Log-log regression to quantify price sensitivity and promotional lift</p>
+                        <ul>
+                            <li>Elasticity -0.5 to -0.9 (inelastic demand)</li>
+                            <li>Displays deliver 20-30% volume lift</li>
+                            <li>Mailers add 10-20% incremental sales</li>
+                            <li>Pricing strategy: protect margins vs. promote</li>
+                        </ul>
+                        <a href="3_price_elasticity.html" class="notebook-link">View Analysis →</a>
+                    </div>
+                </div>
+                
+                <div class="notebook-card">
+                    <div class="notebook-number">4</div>
+                    <div class="notebook-content">
+                        <h3>Coupon Redemption Propensity</h3>
+                        <p>Logistic regression model to optimize coupon allocation</p>
+                        <ul>
+                            <li>AUC ~0.75, reliable scoring model</li>
+                            <li>Top 30% capture 68% of redemptions</li>
+                            <li>2× lift over random targeting</li>
+                            <li>TypeA campaigns convert 2× better than TypeB/C</li>
+                        </ul>
+                        <a href="4_coupon_propensity.html" class="notebook-link">View Analysis →</a>
+                    </div>
+                </div>
+                
+                <div class="notebook-card">
+                    <div class="notebook-number">5</div>
+                    <div class="notebook-content">
+                        <h3>Time to Churn</h3>
+                        <p>Survival analysis to identify retention drivers and intervention timing</p>
+                        <ul>
+                            <li>Kaplan-Meier curves + Cox proportional hazards</li>
+                            <li>Log trips (HR 0.57) and log spend (HR 0.67) extend survival</li>
+                            <li>Coupons only work when they trigger incremental behavior</li>
+                            <li>Green/yellow/red zone monitoring framework</li>
+                        </ul>
+                        <a href="5_time_to_churn.html" class="notebook-link">View Analysis →</a>
+                    </div>
+                </div>
+                
+                <div class="notebook-card">
+                    <div class="notebook-number">6</div>
+                    <div class="notebook-content">
+                        <h3>Strategic Conclusions</h3>
+                        <p>Integrated marketing playbook synthesizing all five modules</p>
+                        <ul>
+                            <li>Four strategic pillars framework</li>
+                            <li>90-day action plan with specific tactics</li>
+                            <li>Resource allocation blueprint ($100K example)</li>
+                            <li>Success metrics and continuous improvement</li>
+                        </ul>
+                        <a href="6_strategic_conclusions.html" class="notebook-link">View Strategy →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-findings">
+                <h2>⭐ Key Findings</h2>
+                <ul>
+                    <li>392 Premium Loyalists (16% of households) drive 47% of revenue</li>
+                    <li>High-support bundles deliver 15-30% lifts without margin erosion</li>
+                    <li>Most categories are inelastic (elasticity -0.5 to -0.9) and tolerate 3-5% price increases</li>
+                    <li>Top 30% by coupon propensity deliver 2× lift and capture 68% of redemptions</li>
+                    <li>Only trips and spend extend survival; tactics must boost these behaviors</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <h3>🔧 Technical Stack</h3>
+            <div class="tech-stack">
+                <span class="tech-badge">Python 3.13</span>
+                <span class="tech-badge">pandas</span>
+                <span class="tech-badge">scikit-learn</span>
+                <span class="tech-badge">statsmodels</span>
+                <span class="tech-badge">lifelines</span>
+                <span class="tech-badge">mlxtend</span>
+                <span class="tech-badge">CHAID</span>
+                <span class="tech-badge">matplotlib</span>
+                <span class="tech-badge">seaborn</span>
+            </div>
+            <p style="margin-top: 20px; opacity: 0.8;">Dunnhumby Complete Journey Dataset | 2,500 households | ~2.6M transactions | 711 days</p>
+        </div>
+    </div>
+</body>
+</html>
