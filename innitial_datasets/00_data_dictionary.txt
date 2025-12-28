@@ -1,0 +1,182 @@
+================================================================================
+DUNNHUMBY - THE COMPLETE JOURNEY DATASET
+DATA DICTIONARY
+================================================================================
+
+Dataset Overview:
+- 2,500 households (frequent shoppers)
+- 2 years of transaction data
+- All household purchases included
+- Demographic information for certain households
+- Direct marketing contact history included
+- Week range: 1-102
+
+Customer Data Categories Reference:
+- Transactional Data: Purchases, returns, and other financial transactions.
+- Behavioral Data: Customer interactions such as visits, clicks, or campaign responses.
+- Demographic Data: Age, gender, income, education, occupation, and related segmentation.
+- Psychographic Data: Interests, values, and lifestyle indicators.
+- Geographic Data: Region, density, or location-specific identifiers.
+
+================================================================================
+1. TRANSACTION_DATA
+================================================================================
+Description: Contains all products purchased by households. Each line represents 
+a store receipt line item.
+
+Columns:
+--------
+household_key                            : Uniquely identifies each household for the purchase record
+BASKET_ID                                : Uniquely identifies a purchase occasion
+DAY (Transactional Data)                 : Day when the transaction occurred
+PRODUCT_ID                               : Uniquely identifies each product in the basket
+QUANTITY (Transactional Data)            : Number of the products purchased during the trip
+SALES_VALUE (Transactional Data)         : Amount of dollars retailer receives from the sale
+STORE_ID (Geographic Data)               : Identifies the store where the purchase was made
+RETAIL_DISC (Transactional Data)         : Discount applied due to the retailer's loyalty card programme
+TRANS_TIME (Transactional Data)          : Time of day when the transaction occurred
+WEEK_NO (Transactional Data)             : Week of the transaction. Ranges 1-102
+COUPON_DISC (Transactional Data)         : Discount applied due to manufacturer coupon
+COUPON_MATCH_DISC (Transactional Data)   : Discount applied due to the retailer's match of the manufacturer coupon
+
+Notes:
+- sales_value is the amount received by retailer (not actual customer price)
+- Loyalty card price = (sales_value - (retail_disc + coupon_match_disc))/quantity
+- Non-loyalty card price = (sales_value - (coupon_match_disc))/quantity
+
+================================================================================
+2. HH_DEMOGRAPHIC
+================================================================================
+Description: Provides demographic information for a portion of households. 
+Fields have generic names but values are ordered meaningfully for trend analysis.
+
+Columns:
+--------
+classification_1 (Demographic Data)        : Household-level demographic segmentation. Values have meaningful
+                                             order. Possible values: Group1 through Group6
+classification_2 (Demographic Data)        : Household-level demographic segmentation. Possible values: X, Y and Z
+classification_3 (Demographic Data)        : Household-level demographic segmentation. Values have meaningful
+                                             order. Possible values: Level1 through Level12
+HOMEOWNER_DESC (Demographic Data)          : Indicates whether the household owns or rents the home (e.g.,
+                                             Homeowner, Renter, Unknown)
+classification_5 (Demographic Data)        : Household-level demographic segmentation. Values have meaningful
+                                             order. Possible values: Group1 through Group6
+classification_4 (Demographic Data)        : Household-level demographic segmentation. Values have meaningful
+                                             order. Possible values: 1 through 5+
+KID_CATEGORY_DESC (Demographic Data)       : Indicates presence/lifestage of children in the household (e.g., 1, 2, 3,
+                                             None/Unknown)
+household_key                              : Uniquely identifies each household for linking demographic attributes
+
+Note: Values are ordered logically to enable trend investigation
+
+================================================================================
+3. CAMPAIGN_TABLE
+================================================================================
+Description: Lists the campaigns received by each household. Each household may 
+have received a different set of campaigns.
+
+Columns:
+--------
+DESCRIPTION                           : Type of campaign received (TypeA, TypeB or TypeC)
+household_key                         : Uniquely identifies each household that received the campaign
+CAMPAIGN                              : Uniquely identifies each campaign. Ranges 1-30
+
+================================================================================
+4. CAMPAIGN_DESC
+================================================================================
+Description: Provides the time period for which a campaign runs. Coupons received 
+as part of a campaign are valid within these dates.
+
+Columns:
+--------
+DESCRIPTION                           : Type of campaign (TypeA, TypeB or TypeC)
+CAMPAIGN                              : Uniquely identifies each campaign. Ranges 1-30
+START_DAY                             : Start date of the campaign availability to shoppers
+END_DAY                               : End date of the campaign availability to shoppers
+
+================================================================================
+5. PRODUCT
+================================================================================
+Description: Contains information on each product sold such as type of product, 
+national or private label, and brand identifier.
+
+Columns:
+--------
+PRODUCT_ID                                   : Number that uniquely identifies each product purchased
+MANUFACTURER                                 : Code that links products with the same manufacturer together
+DEPARTMENT                                   : Groups similar products together
+BRAND                                        : Indicates Private or National label brand
+COMMODITY_DESC                               : Groups similar products together at a lower level
+SUB_COMMODITY_DESC                           : Groups similar products together at the lowest level
+CURR_SIZE_OF_PRODUCT                         : Indicates package size (not available for all products)
+
+================================================================================
+6. COUPON
+================================================================================
+Description: Lists all coupons sent to customers as part of campaigns, and the 
+products for which each coupon is redeemable. Some coupons are redeemable for 
+multiple products.
+
+Campaign Types:
+- TypeA: Each customer received 16 coupons out of a pool, selected based on prior 
+  purchase behavior. Specific coupon selection per customer is outside database scope.
+- TypeB & TypeC: All customers participating receive all coupons for that campaign.
+
+Columns:
+--------
+COUPON_UPC                           : Uniquely identifies each coupon (unique to household and campaign)
+PRODUCT_ID                           : Uniquely identifies the product for which the coupon is redeemable
+CAMPAIGN                             : Uniquely identifies each campaign. Ranges 1-30
+
+================================================================================
+7. COUPON_REDEMPT
+================================================================================
+Description: Identifies the coupons that each household redeemed.
+
+Columns:
+--------
+household_key                         : Uniquely identifies each household that redeemed a coupon
+DAY (Transactional Data)              : Day when the transaction occurred
+COUPON_UPC                            : Uniquely identifies each coupon (unique to household and campaign)
+CAMPAIGN                              : Uniquely identifies each campaign
+
+================================================================================
+8. CAUSAL_DATA
+================================================================================
+Description: Indicates whether a product was featured in the weekly mailer or was 
+part of an in-store display (other than regular product placement).
+
+Columns:
+--------
+PRODUCT_ID                               : Uniquely identifies each product featured
+STORE_ID (Geographic Data)               : Identifies the store where merchandising occurred
+WEEK_NO                                  : Week of the transaction or merchandising activity
+display                                  : Display location (see codes below) indicating in-store exposure
+mailer                                   : Mailer location (see codes below) indicating ad exposure
+
+Display Codes:
+--------------
+0   - Not on Display
+1   - Store Front
+2   - Store Rear
+3   - Front End Cap
+4   - Mid-Aisle End Cap
+5   - Rear End Cap
+6   - Side-Aisle End Cap
+7   - In-Aisle
+9   - Secondary Location Display
+A   - In-Shelf
+
+Mailer Codes:
+-------------
+0   - Not on ad
+A   - Interior page feature
+C   - Interior page line item
+D   - Front page feature
+F   - Back page feature
+H   - Wrap front feature
+J   - Wrap interior coupon
+L   - Wrap back feature
+P   - Interior page coupon
+X   - Free on interior page
+Z   - Free on front page, back page or wrap
