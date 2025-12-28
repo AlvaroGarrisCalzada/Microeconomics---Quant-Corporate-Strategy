@@ -2,7 +2,7 @@
 
 A comprehensive data-driven marketing strategy project analyzing 2,500 households and ~2.6M transactions from the Dunnhumby Complete Journey dataset to optimize resource allocation, bundling, pricing, coupon targeting, and retention.
 
-## 🚀 Quick Navigation
+## Quick Navigation
 
 ### View Analysis Results (HTML Exports)
 **For submission/review, start here:**
