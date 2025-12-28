@@ -1,4 +1,4 @@
-# IE Customer Analytics — Complete Journey Analysis
+# IE Customer Analytics Complete Journey Analysis
 
 A comprehensive data-driven marketing strategy project analyzing 2,500 households and ~2.6M transactions from the Dunnhumby Complete Journey dataset to optimize resource allocation, bundling, pricing, coupon targeting, and retention.
 
